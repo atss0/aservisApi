@@ -12,7 +12,9 @@ use App\Http\Controllers\ParentController;
 // 🔓 Public Routes
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-
+Route::get('/routes', function () {
+    return response()->json(['routes' => \App\Models\Route::all()]);
+});
 // ✅ Yönetimsel İşlemler (admin panelden yapılması önerilir ama istekle ekledin)
 Route::post('/students', [StudentController::class, 'store']);
 Route::post('/vehicles', [VehicleController::class, 'store']);
