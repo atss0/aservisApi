@@ -18,12 +18,11 @@ class RideController extends Controller
             return response()->json(['message' => 'Only drivers can start rides.'], 403);
         }
 
-        // Gerekli validasyon
         $request->validate([
-            'vehicle_id' => 'required|exists:vehicles,id'
+            'vehicle_id' => 'required|exists:vehicles,id',
+            'route_id' => 'required|exists:routes,id'
         ]);
 
-        // Aktif ride var mı kontrol
         $existing = Ride::where('driver_id', $user->id)
             ->where('status', 'active')
             ->first();
@@ -35,6 +34,7 @@ class RideController extends Controller
         $ride = Ride::create([
             'driver_id' => $user->id,
             'vehicle_id' => $request->vehicle_id,
+            'route_id' => $request->route_id,
             'started_at' => now(),
             'status' => 'active'
         ]);

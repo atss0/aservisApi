@@ -23,4 +23,10 @@ class Ride extends Model
     {
         return $this->belongsTo(Vehicle::class);
     }
+
+    // app/Models/Ride.php
+    public function route()
+    {
+        return $this->belongsTo(Route::class);
+    }
 }
