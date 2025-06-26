@@ -8,6 +8,13 @@ use App\Models\User;
 
 class StudentController extends Controller
 {
+
+    public function index()
+    {
+        $students = Student::with('parent')->get();
+        return response()->json($students);
+    }
+    
     public function store(Request $request)
     {
         $request->validate([

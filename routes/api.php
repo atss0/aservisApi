@@ -16,7 +16,9 @@ Route::get('/routes', function () {
     return response()->json(['routes' => \App\Models\Route::all()]);
 });
 // ✅ Yönetimsel İşlemler (admin panelden yapılması önerilir ama istekle ekledin)
+Route::get('/students', [StudentController::class, 'index']);
 Route::post('/students', [StudentController::class, 'store']);
+Route::get('/vehicles', [VehicleController::class, 'getAllVehicles']);
 Route::post('/vehicles', [VehicleController::class, 'store']);
 Route::post('/vehicles/{vehicle_id}/students', [VehicleController::class, 'assignStudents']);
 // 🔐 Authenticated Routes

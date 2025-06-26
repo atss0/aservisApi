@@ -13,6 +13,12 @@ class VehicleController extends Controller
         return response()->json($vehicles);
     }
 
+    public function getAllVehicles()
+    {
+        $vehicles = Vehicle::all();
+        return response()->json($vehicles);
+    }
+
     public function driverVehicles(Request $request)
     {
         $user = $request->user();
